@@ -8,7 +8,7 @@ function Root({store}) {
 		<div>
 			<Provider store={store}>
 				<Router>
-					<App/>
+					<App />
 				</Router>
 			</Provider>
 		</div>

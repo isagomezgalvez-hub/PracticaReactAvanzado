@@ -1,4 +1,6 @@
 export const AUTH_LOGIN = 'AUTH_LOGIN'
 export const AUTH_LOGOUT = 'AUTH_LOGOUT'
 
-
+export const PRODUCTS_INIT = 'PRODUCT_INIT'
+export const PRODUCTS_SUCCESS = 'PRODUCT_SUCCESS'
+export const PRODUCTS_FAILURE = 'PRODUCT_FAILURE'
