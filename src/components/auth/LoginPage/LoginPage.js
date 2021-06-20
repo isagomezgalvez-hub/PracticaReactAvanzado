@@ -1,22 +1,25 @@
 import React from 'react';
-import T from 'prop-types';
 
-import { useAuthContext } from '../context';
+
+import { connect } from 'react-redux';
+
 import usePromise from '../../../hooks/usePromise';
 import { login } from '../../../api/auth';
 import LoginForm from './LoginForm';
 
-function LoginPage({ location, history }) {
-  const { handleLogin } = useAuthContext();
+import { authLogin } from '../../../actions/authLogin';
+
+function LoginPage({onLogin, location, history }) {
+ 
   const { isPending: isLoading, error, execute, resetError } = usePromise();
 
   const handleSubmit = credentials => {
-    execute(login(credentials))
-      .then(handleLogin)
+    onLogin()
+   /*  execute(login(credentials))
       .then(() => {
         const { from } = location.state || { from: { pathname: '/' } };
         history.replace(from);
-      });
+      }); */
   };
 
   return (
@@ -31,11 +34,8 @@ function LoginPage({ location, history }) {
     </div>
   );
 }
+const mapDispatchToProps = (dispatch)=> ({
+  onLogin: () => dispatch(authLogin()),
+});
 
-LoginPage.propTypes = {
-  location: T.shape({ state: T.shape({ from: T.object.isRequired }) })
-    .isRequired,
-  history: T.shape({ replace: T.func.isRequired }).isRequired,
-};
-
-export default LoginPage;
+export default connect(null, mapDispatchToProps)(LoginPage);

@@ -7,11 +7,11 @@ import { logout } from '../../../api/auth';
 //conectar el componente con Redux
 import { connect } from 'react-redux';
 import { getIsLogged } from '../../../store/selectors';
+import { authLogout } from '../../../actions/authLogin';
 
-const AuthButton = ({ handleLogout, isLogged }) => {
+const AuthButton = ({ onLogout, isLogged }) => {
   const handleLogoutConfirm = async () => {
-    await logout();
-    handleLogout();
+    onLogout()
   };
 
   return isLogged ? (
@@ -27,7 +27,7 @@ const AuthButton = ({ handleLogout, isLogged }) => {
 };
 
 AuthButton.propTypes = {
-  handleLogout: T.func.isRequired,
+  onLogout: T.func.isRequired,
   isLogged: T.bool,
 };
 
@@ -39,4 +39,8 @@ const mapStateToProps = (state)=>({
   isLogged:getIsLogged(state)
 })
 
-export default connect(mapStateToProps)(AuthButton);
+const mapDispatchToProps = (dispatch) => ({
+  onLogout: () => dispatch(authLogout()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthButton);
