@@ -12,5 +12,7 @@ const PrivateRoute = ({isLogged, ...props}) => {
     <Redirect to={{ pathname: '/login', state: { from: location } }} />
   );
 };
+
+
 const mapStateToProps = state => ({isLogged:getIsLogged(state)})
 export default connect(mapStateToProps) (PrivateRoute);
