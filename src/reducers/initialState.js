@@ -1,7 +1,7 @@
 const initialState = {
 	auth: false,
-	products:[]
-	//ui:
+	products:[],
+	ui:[],
 }
 
 export default initialState;

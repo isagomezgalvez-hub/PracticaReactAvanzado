@@ -1,7 +1,6 @@
 import { 
-	PRODUCTS_INIT,
 	PRODUCTS_SUCCESS,
-	PRODUCTS_FAILURE
+	PRODUCT_CREATED
 } from './types';
 
 
@@ -12,9 +11,11 @@ export const productsSuccess = (products)=>{
 	}
 }
 
-export const productsFailure = (error) => {
+
+
+export const productCreated = (product) => {
 	return {
-		type: 'PRODUCTS_FAILURE',
-		payload: error
+		type: 'PRODUCT_CREATED',
+		payload: product
 	}
 }

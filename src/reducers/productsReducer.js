@@ -1,23 +1,23 @@
 import initialState from './initialState';
 
 import { 
-	PRODUCTS_FAILURE, 
 	PRODUCTS_SUCCESS, 
-	PRODUCTS_INIT 
+	PRODUCT_CREATED
 } from '../actions/types'
 
-function productReducer(state=initialState, action){
+function productReducer(state=initialState.products, action){
 	switch (action.type) {
 		case PRODUCTS_SUCCESS:
 			return {
 				...state,
 				products:action.payload
 			};
-		case PRODUCTS_FAILURE:
+	
+		case PRODUCT_CREATED:
 			return{
 				...state,
-				products:null,
-			};
+				products: [...state.products, action.payload.product] //añadir elemento al array
+			}
 		default: return state
 	}
 }

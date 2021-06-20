@@ -1,11 +1,12 @@
-import { createStore } from "redux";
+import { createStore, combineReducers} from "redux";
 import { composeWithDevTools } from 'redux-devtools-extension';
+import rootReducer from "../reducers";
 
-import authReducer from "../reducers/authReducer";
-
-const configureStore = ({preloadedState}) => {
-	const store = createStore(authReducer, preloadedState, composeWithDevTools());
+const configureStore = ({ preloadedState }) => {
+	const store = createStore(
+		combineReducers(rootReducer),
+		preloadedState, 
+		composeWithDevTools());
 	return store;
 }
-
 export default configureStore;
