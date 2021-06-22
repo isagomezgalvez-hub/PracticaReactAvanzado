@@ -1,17 +1,31 @@
 import React from 'react';
 
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import LoginForm from './LoginForm';
 
-import { authLogin } from '../../../actions/authLogin';
+import { authLoginSuccess, authLoginInit, authLoginFailure } from '../../../actions/authLogin';
+import { useHistory, useLocation } from 'react-router-dom';
+import { getUI } from '../../../store/selectors';
 
 function LoginPage() {
+  const history = useHistory();
+  const location = useLocation();
   const dispatch = useDispatch();
+  const {error, loading} = useSelector(getUI);
   
-  const handleSubmit = ()=> {
-    dispatch(authLogin());
+  const handleSubmit = async credentials=> {
+    dispatch(authLoginInit())
+    try {
+      const { from } = location.state || { from: { pathname:'/'} };
+      await LoginPage(credentials)
+      dispatch(authLoginSuccess())
+      history.replace(from)
+      
+    } catch (error) {
+      dispatch(authLoginFailure(error));
+    }
   };
 
   return (

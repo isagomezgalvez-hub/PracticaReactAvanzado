@@ -1,7 +1,10 @@
 const initialState = {
 	auth: false,
 	products:[],
-	ui:[],
+	ui:{
+		loading:false,
+		error:null,
+	},
 }
 
 export default initialState;

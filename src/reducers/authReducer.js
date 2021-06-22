@@ -1,9 +1,12 @@
 import initialState from './initialState';
-import { AUTH_LOGOUT, AUTH_LOGIN } from '../actions/types'
+import { 
+	AUTH_LOGOUT,
+	AUTH_LOGIN_SUCCESS
+} from '../actions/types'
 
 function authReducer(state=initialState.auth, action){
 	switch (action.type) {
-		case AUTH_LOGIN:
+		case AUTH_LOGIN_SUCCESS:
 			return {
 				...state,
 				auth:true

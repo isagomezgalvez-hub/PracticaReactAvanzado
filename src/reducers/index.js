@@ -7,8 +7,7 @@ import uiReducer from "./uiReducers";
 
 const rootReducer = ({
 	auth: authReducer,
-	products: productReducer,
-	ui: uiReducer
+	products: productReducer
 });
 
 export default rootReducer;
