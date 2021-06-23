@@ -5,7 +5,7 @@ import {
 	PRODUCT_CREATED
 } from '../actions/types'
 
-function productReducer(state=initialState.products, action){
+function product(state=initialState.products, action){
 	switch (action.type) {
 		case PRODUCTS_SUCCESS:
 			return {
@@ -22,4 +22,4 @@ function productReducer(state=initialState.products, action){
 	}
 }
 
-export default productReducer;
+export default product;

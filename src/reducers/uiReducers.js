@@ -3,9 +3,10 @@ import initialState from './initialState';
 import {
 	AUTH_LOGIN_INIT,
 	AUTH_LOGIN_SUCCESS,
+	RESET_ERROR,
 } from '../actions/types'
 
-function uiReducer(state = initialState.ui, action) {
+function ui(state = initialState.ui, action) {
 	if(action.error ){
 		return {
 			...state,
@@ -25,8 +26,13 @@ function uiReducer(state = initialState.ui, action) {
 				...state,
 				loading: false,
 			}
+		case RESET_ERROR:
+			return{
+				...state,
+				error:null,
+			}
 		default: return state
-	
+		}
 }
 
-export default uiReducer;
+export default ui;

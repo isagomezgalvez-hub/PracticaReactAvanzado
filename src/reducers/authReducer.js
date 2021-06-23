@@ -4,7 +4,7 @@ import {
 	AUTH_LOGIN_SUCCESS
 } from '../actions/types'
 
-function authReducer(state=initialState.auth, action){
+function auth(state=initialState.auth, action){
 	switch (action.type) {
 		case AUTH_LOGIN_SUCCESS:
 			return {
@@ -20,4 +20,4 @@ function authReducer(state=initialState.auth, action){
 	}
 }
 
-export default authReducer;
+export default auth;

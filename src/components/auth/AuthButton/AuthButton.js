@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 import T from 'prop-types';
 
 import { ConfirmationButton } from '../../shared';
-import { logout } from '../../../api/auth';
+
 
 //conectar el componente con Redux
 import { connect } from 'react-redux';
 import { getIsLogged } from '../../../store/selectors';
-import { authLogout } from '../../../actions/authLogin';
+import { logoutAction } from '../../../actions/authLogin';
 
 const AuthButton = ({ onLogout, isLogged }) => {
   const handleLogoutConfirm = async () => {
@@ -40,7 +40,7 @@ const mapStateToProps = (state)=>({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLogout: () => dispatch(authLogout()),
+  onLogout: () => dispatch(logoutAction()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthButton);
