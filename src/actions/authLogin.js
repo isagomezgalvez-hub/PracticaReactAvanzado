@@ -4,7 +4,7 @@ import {
 	AUTH_LOGIN_FAILURE,
 	AUTH_LOGOUT } from './types';
 
-import { login, logout } from '../api/auth';
+
 
 //Action Creator
 
@@ -35,11 +35,11 @@ export const authLogout = () => {
 }
 
 //Async Actions
-export const loginAction = (credentials, history, location) => {
-	return async function (dispatch, getState) {
+export const loginAction = credentials => {
+	return async function (dispatch, getState, {api, history}) {
 		dispatch(authLoginInit());
 		try {
-			await login(credentials);
+			await api.authenticate.login(credentials);
 			dispatch(authLoginSuccess());
 			// Redirect
 			const { from } = history.location.state || { from: { pathname: '/' } };
@@ -52,8 +52,8 @@ export const loginAction = (credentials, history, location) => {
 
 
 export const logoutAction = () => {
-	return async function (dispatch, _getState) {
-		await logout();
+	return async function (dispatch, _getState, { api }) {
+		await api.authenticate.logout();
 		dispatch(authLogout());
 	};
 };

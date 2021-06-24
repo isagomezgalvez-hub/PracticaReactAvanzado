@@ -38,7 +38,7 @@ function AdvertsPage() {
   if (error?.statusCode === 401) {
     return <Redirect to="/login" />;
   }
-
+  console.log(products)
   const filteredAdverts = filterAdverts(adverts, filters);
 
   return (

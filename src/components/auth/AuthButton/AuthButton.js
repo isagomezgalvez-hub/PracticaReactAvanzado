@@ -28,14 +28,14 @@ const AuthButton = ({ onLogout, isLogged }) => {
 
 AuthButton.propTypes = {
   onLogout: T.func.isRequired,
-  isLogged: T.bool,
+  isLogged: T.object,
 };
 
 AuthButton.defaultProps = {
   isLogged: false,
 };
 
-const mapStateToProps = (state)=>({
+const mapStateToProps = state=>({
   isLogged:getIsLogged(state)
 })
 
