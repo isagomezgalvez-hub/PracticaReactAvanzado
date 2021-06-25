@@ -7,8 +7,10 @@ import {
 	PRODUCT_LOADED_INIT,
 	PRODUCT_CREATED_INIT,
 	PRODUCT_CREATED_SUCCESS,
-	RESET_ERROR,
-
+	PRODUCT_DETAILS_INIT,
+	PRODUCT_DETAILS_SUCCESS,
+	RESET_ERROR
+	
 } from '../actions/types'
 
 function ui(state=initialState.ui, action) {
@@ -23,6 +25,7 @@ function ui(state=initialState.ui, action) {
 		case AUTH_LOGIN_INIT:	
 		case PRODUCT_LOADED_INIT:
 		case PRODUCT_CREATED_INIT:
+		case PRODUCT_DETAILS_INIT:
 			return {
 				...state,
 				loading: true,
@@ -31,6 +34,7 @@ function ui(state=initialState.ui, action) {
 		case AUTH_LOGIN_SUCCESS:
 		case PRODUCTS_LOADED_SUCCESS:
 		case PRODUCT_CREATED_SUCCESS:
+		case PRODUCT_DETAILS_SUCCESS:
 			return {
 				...state,
 				loading: false,

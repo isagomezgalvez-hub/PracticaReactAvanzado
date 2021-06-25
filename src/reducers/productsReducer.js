@@ -2,7 +2,8 @@ import initialState from './initialState';
 
 import { 
 	PRODUCTS_LOADED_SUCCESS,
-	PRODUCT_CREATED_SUCCESS
+	PRODUCT_CREATED_SUCCESS,
+	PRODUCT_DETAILS_SUCCESS,
 } from '../actions/types'
 
 export const adverts = (state = initialState.adverts, action) => {
@@ -15,6 +16,7 @@ export const adverts = (state = initialState.adverts, action) => {
 				data: action.payload 
 			};
 		case PRODUCT_CREATED_SUCCESS:
+		case PRODUCT_DETAILS_SUCCESS:
 			return{
 				...state,
 				loaded:false,

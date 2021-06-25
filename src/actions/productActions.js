@@ -7,7 +7,8 @@ import {
 	PRODUCT_CREATED_FAILURE,
 	PRODUCT_DETAILS_INIT,
 	PRODUCT_DETAILS_SUCCESS,
-	PRODUCT_DETAILS_FAILURE
+	PRODUCT_DETAILS_FAILURE,
+	
 } from './types';
 
 import { getAdvertsLoaded, getAdvertDetail } from '../store/selectors';
@@ -122,5 +123,11 @@ export const ProductDetailsActions = advertId => {
 		} catch (error) {
 			dispatch(productDetailsFailure(error))
 		}
+	}
+}
+
+export const productRemoveInit = () => {
+	return {
+		type: PRODUCT_DETAILS_INIT,
 	}
 }
