@@ -4,10 +4,13 @@ import {
 	PRODUCTS_LOADED_FAILURE,
 	PRODUCT_CREATED_INIT,
 	PRODUCT_CREATED_SUCCESS,
-	PRODUCT_CREATED_FAILURE
+	PRODUCT_CREATED_FAILURE,
+	PRODUCT_DETAILS_INIT,
+	PRODUCT_DETAILS_SUCCESS,
+	PRODUCT_DETAILS_FAILURE
 } from './types';
 
-import { getAdvertsLoaded } from '../store/selectors';
+import { getAdvertsLoaded, getAdvertDetail } from '../store/selectors';
 
 export const productsLoadedInit = () => {
 	return {
@@ -79,6 +82,45 @@ export const ProductCreateActions = advert =>{
 
 		} catch (error) {
 			dispatch(productCreatedFailure(error))
+		}
+	}
+}
+
+export const productDetailsInit = () => {
+	return {
+		type: PRODUCT_DETAILS_INIT,
+	}
+}
+
+export const productDetailsSuccess = (advertID) => {
+	return {
+		type: PRODUCT_DETAILS_SUCCESS,
+		payload:advertID
+	}
+}
+
+export const productDetailsFailure = (error) => {
+	return {
+		type: PRODUCT_DETAILS_FAILURE,
+		payload:error,
+		error:true,
+	}
+}
+
+export const ProductDetailsActions = advertId => {
+	return async function (dispatch, getState, { api }) {
+		const advertDetailLoad = getAdvertDetail(getState(), advertId);
+		if (advertDetailLoad) {
+			return;
+		}
+		dispatch(productDetailsInit())
+		try {
+			const advertDetail = await api.products.getAdvert(advertId);
+			dispatch(productDetailsSuccess(advertDetail));
+			return advertDetail;
+
+		} catch (error) {
+			dispatch(productDetailsFailure(error))
 		}
 	}
 }

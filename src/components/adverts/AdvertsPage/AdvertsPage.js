@@ -26,7 +26,7 @@ function AdvertsPage() {
 
   React.useEffect(() => {
    dispatch(ProductLoadActions(adverts));
-  },[]);
+  },[dispatch, adverts]);
 
   React.useEffect(() => {
     saveFilters(filters);
