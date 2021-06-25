@@ -4,15 +4,15 @@ import { createLogger } from "redux-logger";
 import thunk from "redux-thunk";
 
 import auth from "../reducers/authReducer";
-import products from "../reducers/authReducer";
-import ui from "../reducers/authReducer";
+import { adverts } from "../reducers/productsReducer";
+import ui from "../reducers/uiReducers";
 
 import * as authenticate from '../api/auth';
-import * as adverts from '../api/adverts';
+import * as products from '../api/adverts';
 
 const api = {
 	authenticate,
-	adverts,
+	products,
 }
 const logger = createLogger()
 
@@ -20,7 +20,7 @@ const logger = createLogger()
 const configureStore = ({ preloadedState, history }) => {
 	const middleware = [thunk.withExtraArgument({ api, history }), logger];
 	const store = createStore(
-		combineReducers({ auth, products, ui}),
+		combineReducers({ auth, adverts, ui}),
 		preloadedState, 
 		composeWithDevTools(applyMiddleware(...middleware)));
 	return store;

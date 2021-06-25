@@ -1,25 +1,26 @@
 import initialState from './initialState';
 
 import { 
-	PRODUCTS_SUCCESS, 
-	PRODUCT_CREATED
+	PRODUCTS_LOADED_SUCCESS,
+	PRODUCT_CREATED_SUCCESS
 } from '../actions/types'
 
-function product(state=initialState.products, action){
+export const adverts = (state = initialState.adverts, action) => {
+
 	switch (action.type) {
-		case PRODUCTS_SUCCESS:
-			return {
-				...state,
-				products:action.payload
+		case PRODUCTS_LOADED_SUCCESS:
+			return { 
+				...state, 
+				loaded: true, 
+				data: action.payload 
 			};
-	
-		case PRODUCT_CREATED:
+		case PRODUCT_CREATED_SUCCESS:
 			return{
 				...state,
-				products: [...state.products, action.payload.product] //añadir elemento al array
+				loaded:false,
+				data: [...state.data, action.payload],
 			}
-		default: return state
+		default:
+			return state;
 	}
-}
-
-export default product;
+};

@@ -1,6 +1,9 @@
 const initialState = {
 	auth: false,
-	products:[],
+	adverts: {
+		loaded: false,
+		data: [],
+	},
 	ui:{
 		loading:false,
 		error:null,

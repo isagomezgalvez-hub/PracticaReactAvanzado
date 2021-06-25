@@ -1,5 +1,4 @@
 import React from 'react';
-import T from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { AdvertPage, AdvertsPage, NewAdvertPage } from '../adverts';
