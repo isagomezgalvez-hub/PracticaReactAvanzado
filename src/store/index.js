@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { createLogger } from "redux-logger";
 import thunk from "redux-thunk";
 
@@ -18,9 +19,13 @@ const logger = createLogger()
 
 
 const configureStore = ({ preloadedState, history }) => {
-	const middleware = [thunk.withExtraArgument({ api, history }), logger];
+	const middleware = [
+		routerMiddleware(history),
+		thunk.withExtraArgument({ api, history }), 
+		logger
+	];
 	const store = createStore(
-		combineReducers({ auth, adverts, ui}),
+		combineReducers({ auth, adverts, ui, router: connectRouter(history)}),
 		preloadedState, 
 		composeWithDevTools(applyMiddleware(...middleware)));
 	return store;
