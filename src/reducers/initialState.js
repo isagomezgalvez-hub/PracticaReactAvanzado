@@ -4,10 +4,11 @@ const initialState = {
 		loaded: false,
 		data: [],
 	},
+	tags: [],
 	ui:{
 		loading:false,
 		error:null,
-	},
+	}	
 }
 
 export default initialState;

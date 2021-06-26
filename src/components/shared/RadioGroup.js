@@ -23,7 +23,7 @@ RadioGroup.propTypes = {
     T.shape({
       value: T.string.isRequired,
       label: T.node.isRequired,
-    }).isRequired
+    }).isRequired,
   ).isRequired,
   value: T.string.isRequired,
 };

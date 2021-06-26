@@ -11,10 +11,11 @@ import {
 	PRODUCT_DELETE_INIT,
 	PRODUCT_DELETE_SUCCESS,
 	PRODUCT_DELETE_FAILURE,
+	PRODUCT_TAGS_LOADED
 
 } from './types';
 
-import { getAdvertsLoaded, getAdvertDetail } from '../store/selectors';
+import { getAdvertsLoaded, getAdvertDetail, getTagsLoaded } from '../store/selectors';
 
 export const productsLoadedInit = () => {
 	return {
@@ -162,3 +163,23 @@ export const ProductDeleteActions = advertId => {
 		}
 	}
 }
+
+export const tagsLoaded = tags => {
+	return {
+		type: PRODUCT_TAGS_LOADED,
+		payload: tags,
+	}
+}
+
+
+export const tagsActions= () => {
+	return async function (dispatch, getState, { api }) {
+		if (getTagsLoaded(getState())) {
+			return;
+		}
+		const tags = await api.products.getTags();
+		dispatch(tagsLoaded(tags));
+		return tags;
+	}
+}
+

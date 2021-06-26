@@ -6,7 +6,9 @@ import thunk from "redux-thunk";
 
 import auth from "../reducers/authReducer";
 import { adverts } from "../reducers/productsReducer";
+import {tags} from '../reducers/tagsReducer'
 import ui from "../reducers/uiReducers";
+
 
 import * as authenticate from '../api/auth';
 import * as products from '../api/adverts';
@@ -25,7 +27,7 @@ const configureStore = ({ preloadedState, history }) => {
 		logger
 	];
 	const store = createStore(
-		combineReducers({ auth, adverts, ui, router: connectRouter(history)}),
+		combineReducers({ auth, adverts,tags, ui, router: connectRouter(history)}),
 		preloadedState, 
 		composeWithDevTools(applyMiddleware(...middleware)));
 	return store;
