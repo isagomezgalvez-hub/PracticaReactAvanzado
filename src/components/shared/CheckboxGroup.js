@@ -26,7 +26,7 @@ function CheckboxGroup({ options, value, onChange, ...props }) {
           />
           {option}
         </label>
-      ))}
+      ))} 
     </div>
   );
 }

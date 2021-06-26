@@ -25,15 +25,19 @@ function LoginForm({ onSubmit }) {
         type="password"
         name="password"
         value={password}
+        className='loginForm-field'
         onChange={handleChange}
       />
       <input
         type="checkbox"
         name="remember"
         checked={remember}
+        className='loginForm-field'
         onChange={handleChange}
       />
-      <button disabled={!validate(validEmail, validPassword)}>Login</button>
+      <button
+      className="loginForm-submit"
+       disabled={!validate(validEmail, validPassword)}>Login</button>
     </form>
   );
 }

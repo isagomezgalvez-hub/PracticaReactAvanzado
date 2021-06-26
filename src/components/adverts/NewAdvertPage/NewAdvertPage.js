@@ -1,25 +1,29 @@
 import React from 'react';
-import T from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
-import { createAdvert } from '../../../api/adverts';
-import usePromise from '../../../hooks/usePromise';
+import { useDispatch, useSelector } from 'react-redux';
+
+
+import { getUi } from '../../../store/selectors';
+
 import Layout from '../../layout';
 import NewAdvertForm from './NewAdvertForm';
+import { ProductCreateActions } from '../../../actions/productActions';
+function NewAdvertPage() {
 
-function NewAdvertPage({ history }) {
-  const { isPending: isLoading, error, execute } = usePromise(null);
+  const dispatch = useDispatch();
+  const {error} = useSelector(getUi);
 
-  const handleSubmit = newAdvert => {
-    execute(createAdvert(newAdvert)).then(({ id }) =>
-      history.push(`/adverts/${id}`)
-    );
-  };
+const handleSubmit = async newAdvert => {
+    await dispatch(ProductCreateActions(newAdvert))
+
+};
 
   if (error?.statusCode === 401) {
     return <Redirect to="/login" />;
   }
 
+  
   return (
     <Layout>
       <NewAdvertForm onSubmit={handleSubmit} />
@@ -27,10 +31,6 @@ function NewAdvertPage({ history }) {
   );
 }
 
-NewAdvertPage.propTypes = {
-  history: T.shape({
-    push: T.func.isRequired,
-  }).isRequired,
-};
+
 
 export default NewAdvertPage;
