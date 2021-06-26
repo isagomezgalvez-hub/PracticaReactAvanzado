@@ -5,7 +5,7 @@ import Layout from '../../layout';
 import AdvertDetail from './AdvertDetail';
 
 
-import { ProductDetailsActions } from '../../../actions/productActions';
+import { ProductDetailsActions, ProductDeleteActions } from '../../../actions/productActions';
 import { getAdvertDetail, getUi } from '../../../store/selectors';
 
 function AdvertPage() {
@@ -22,7 +22,7 @@ function AdvertPage() {
   }, [dispatch,advertId]);
 
   const handleDelete = () => {
-    dispatch()
+    dispatch(ProductDeleteActions(advertId))
   };
 
   if (error?.statusCode === 401) {

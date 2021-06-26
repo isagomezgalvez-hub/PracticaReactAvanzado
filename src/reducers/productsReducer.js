@@ -4,6 +4,7 @@ import {
 	PRODUCTS_LOADED_SUCCESS,
 	PRODUCT_CREATED_SUCCESS,
 	PRODUCT_DETAILS_SUCCESS,
+	PRODUCT_DELETE_SUCCESS,
 } from '../actions/types'
 
 export const adverts = (state = initialState.adverts, action) => {
@@ -22,6 +23,12 @@ export const adverts = (state = initialState.adverts, action) => {
 				loaded:false,
 				data: [...state.data, action.payload],
 			}
+		case PRODUCT_DELETE_SUCCESS:
+			return {
+				...state,
+				data: state.data.filter((advert) => advert.id !== action.payload),
+			};
+
 		default:
 			return state;
 	}

@@ -8,7 +8,10 @@ import {
 	PRODUCT_DETAILS_INIT,
 	PRODUCT_DETAILS_SUCCESS,
 	PRODUCT_DETAILS_FAILURE,
-	
+	PRODUCT_DELETE_INIT,
+	PRODUCT_DELETE_SUCCESS,
+	PRODUCT_DELETE_FAILURE,
+
 } from './types';
 
 import { getAdvertsLoaded, getAdvertDetail } from '../store/selectors';
@@ -126,8 +129,36 @@ export const ProductDetailsActions = advertId => {
 	}
 }
 
-export const productRemoveInit = () => {
+export const productDeleteInit = () => {
 	return {
-		type: PRODUCT_DETAILS_INIT,
+		type: PRODUCT_DELETE_INIT,
+	}
+}
+
+export const productDeleteSuccess = (advertId) => {
+	return {
+		type: PRODUCT_DELETE_SUCCESS,
+		payload:advertId,
+	}
+}
+
+export const productDeleteFailure = (error) => {
+	return {
+		type: PRODUCT_DELETE_FAILURE,
+		payload: error,
+		error:true,
+	}
+}
+
+export const ProductDeleteActions = advertId => {
+	return async function (dispatch, getState, { api, history }){
+		dispatch(productDeleteInit())
+		try {
+			const deleteAdvert = await api.products.deleteAdvert(advertId);
+			dispatch(productDeleteSuccess(deleteAdvert));
+			history.push('/');
+		} catch (error) {
+			dispatch(productDeleteFailure(error))
+		}
 	}
 }
