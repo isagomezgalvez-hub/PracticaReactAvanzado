@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { getIsLogged } from '../../../store/selectors';
 import { logoutAction } from '../../../actions/authLogin';
 
-const AuthButton = ({ onLogout, isLogged }) => {
+export const AuthButton = ({ onLogout, isLogged }) => {
   const handleLogoutConfirm = async () => {
     onLogout()
   };
@@ -28,7 +28,7 @@ const AuthButton = ({ onLogout, isLogged }) => {
 
 AuthButton.propTypes = {
   onLogout: T.func.isRequired,
-  isLogged: T.object,
+  isLogged: T.bool,
 };
 
 AuthButton.defaultProps = {
